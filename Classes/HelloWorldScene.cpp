@@ -77,6 +77,15 @@ CCSprite* HelloWorld::spriteWithColor(ccColor4F bgColor, float textureWidth, flo
 	glBlendFunc(CC_BLEND_SRC, CC_BLEND_DST);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, (GLsizei)nVertices);
 
+	// Create Noise
+	CCSprite* noise = CCSprite::create("Noise2/Noise.png");
+	ccBlendFunc blendFunc;
+	blendFunc.dst = GL_ZERO;
+	blendFunc.src = GL_DST_COLOR;
+	noise->setBlendFunc(blendFunc);
+	noise->setPosition(ccp(textureWidth / 2, textureHeight / 2));
+	noise->visit();
+
 	// 4: Call CCRenderTexture:end
 	rt->end();
 

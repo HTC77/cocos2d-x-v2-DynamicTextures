@@ -13,10 +13,15 @@ public:
 
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::CCScene* scene();
-    
-    
+
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
+
+	CCSprite* _background;
+	void genBackground();
+	ccColor4F randomBrightColor();
+	CCSprite* spriteWithColor(ccColor4F bgColor, float textureWidth, float textureHeight);
+	void ccTouchesBegan(CCSet* pTouches, CCEvent* pEvent) override;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

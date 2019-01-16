@@ -22,6 +22,7 @@ public:
 	ccColor4F randomBrightColor();
 	CCSprite* spriteWithColor(ccColor4F bgColor, float textureWidth, float textureHeight);
 	void ccTouchesBegan(CCSet* pTouches, CCEvent* pEvent) override;
+	void update(float delta) override;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

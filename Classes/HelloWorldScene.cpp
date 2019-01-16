@@ -24,6 +24,9 @@ void HelloWorld::genBackground()
 	_background = this->spriteWithColor(bgColor, 512, 512);
 	_background->setPosition(visibleSize / 2);
 
+	cocos2d::ccTexParams tp = { GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT };
+	_background->getTexture()->setTexParameters(&tp);
+
 	this->addChild(_background);
 	this->setScale(0.6);
 }
@@ -56,7 +59,7 @@ CCSprite* HelloWorld::spriteWithColor(ccColor4F bgColor, float textureWidth, flo
 	CC_NODE_DRAW_SETUP();
 
 	// 3: Draw into texture
-	float gradiantAlpha = 1.0f;
+	float gradiantAlpha = 0.7f;
 	CCPoint vertices[4];
 	ccColor4F colors[4];
 	int nVertices = 0;
@@ -98,6 +101,15 @@ void HelloWorld::ccTouchesBegan(CCSet* pTouches, CCEvent* pEvent)
 	this->genBackground();
 }
 
+void HelloWorld::update(float delta)
+{
+	float PIXELS_PER_SECOND = 100;
+	static float offset = 0;
+	offset += PIXELS_PER_SECOND * delta;
+	CCSize textureSize = _background->getTextureRect().size;
+	_background->setTextureRect(CCRectMake(offset, 0, textureSize.width, textureSize.height));
+}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -113,6 +125,7 @@ bool HelloWorld::init()
 	_background = new CCSprite();
 	this->genBackground();
 	this->setTouchEnabled(true);
+	this->scheduleUpdate();
     return true;
 }
 

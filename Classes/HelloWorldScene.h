@@ -21,8 +21,12 @@ public:
 	void genBackground();
 	ccColor4F randomBrightColor();
 	CCSprite* spriteWithColor(ccColor4F bgColor, float textureWidth, float textureHeight);
+	CCSprite* spriteWithColor(ccColor4F bgColor, ccColor4F bgColor2, float textureWidth, float textureHeight,int nStripes);
 	void ccTouchesBegan(CCSet* pTouches, CCEvent* pEvent) override;
 	void update(float delta) override;
+	
+	//convert to gl
+	CCPoint ctg(CCPoint point);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

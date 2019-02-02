@@ -118,7 +118,7 @@ CCSprite* HelloWorld::spriteWithColor(ccColor4F bgColor, ccColor4F color2,
 	noise->setBlendFunc(blendFunc);
 	noise->setPosition(ccp(textureWidth / 2, textureHeight / 2));
 	noise->visit();
-	
+
 	// Layer 2: Stripes
 	CCPoint vertices[48];
 	ccColor4F colors[48];
@@ -134,22 +134,22 @@ CCSprite* HelloWorld::spriteWithColor(ccColor4F bgColor, ccColor4F color2,
 		x2 = x1 + textureHeight;
 
 		vertices[nVertices] = CCPointMake(x1, y1);
-		colors[nVertices++] = color2;
+		colors[nVertices++] = bgColor2;
 
 		vertices[nVertices] = CCPointMake(x1 + stripeWidth, y1);
 		colors[nVertices++] = ccColor4F(ccc4f(0, 0, 0, 0));
 
 		vertices[nVertices] = CCPointMake(x2, y2);
-		colors[nVertices++] = color2;
+		colors[nVertices++] = bgColor2;
 
 		vertices[nVertices] = vertices[nVertices - 2];
-		colors[nVertices++] = color2;
+		colors[nVertices++] = bgColor2;
 
 		vertices[nVertices] = vertices[nVertices - 2];
-		colors[nVertices++] = color2;
+		colors[nVertices++] = bgColor2;
 
 		vertices[nVertices] = CCPointMake(x2 + stripeWidth, y2);
-		colors[nVertices++] = color2;
+		colors[nVertices++] = bgColor2;
 
 		x1 += dx;
 	}
@@ -205,7 +205,8 @@ CCSprite* HelloWorld::spriteWithColor(ccColor4F bgColor, ccColor4F color2,
 
 	// 4. end render texture
 	rt->end();
-
+	
+	// 5. create new sprite from the texture
 	return CCSprite::createWithTexture(rt->getSprite()->getTexture());
 }
 
